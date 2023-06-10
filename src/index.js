@@ -4,13 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { makeServer } from "./server";
-
+import { BrowserRouter } from "react-router-dom";
+import { Routers } from "./Routers";
 // Call make Server
 makeServer();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+      <Routers />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
