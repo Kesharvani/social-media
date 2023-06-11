@@ -1,0 +1,8 @@
+:root{
+    --dark_red:#b92b27;
+    --light_red:#a82723;
+}
+*{
+    background-color: black;
+    color: white;
+}

@@ -1,10 +1,12 @@
-import { createContext } from "react";
+import { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { loginServices } from "../services/login/loginServices";
 import { signupServices } from "../services/signup/signupServices";
-import { useContext, useState } from "react";
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const localStorageToken = JSON.parse(localStorage.getItem("loginTokenItem"));
   const [loginToken, setLoginToken] = useState(localStorageToken?.token);
@@ -44,6 +46,7 @@ export const AuthProvider = ({ children }) => {
         );
         setLoginToken(encodedToken);
         setIsLoggedIn(true);
+        navigate("/");
       }
     } catch (error) {
       console.error(error);
