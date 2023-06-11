@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }) => {
         );
         setIsLoggedIn(true);
         setLoginToken(encodedToken);
+        navigate("/");
       }
     } catch (error) {
       console.error(error);
