@@ -1,12 +1,12 @@
 import axios from "axios";
 
 import { ACTION_TYPE } from "../../utils/index";
-export const followServices = async (token, dispatch, post) => {
+export const followServices = async (token, dispatch, followUserId) => {
   try {
     const {
       data: { user, followUser },
       status,
-    } = await axios.post(`/api/users/follow/${post._id}`, {
+    } = await axios.post(`/api/users/follow/${followUserId}`, {
       headers: {
         authorization: token,
       },
@@ -19,12 +19,12 @@ export const followServices = async (token, dispatch, post) => {
   }
 };
 
-export const unfollowServices = async (token, dispatch, post) => {
+export const unfollowServices = async (token, dispatch, followUserId) => {
   try {
     const {
       data: { user, followUser },
       status,
-    } = await axios.post(`/api/users/unfollow/${post._id}`, {
+    } = await axios.post(`/api/users/unfollow/${followUserId}`, {
       headers: {
         authorization: token,
       },
