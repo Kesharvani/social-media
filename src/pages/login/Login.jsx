@@ -1,5 +1,5 @@
 import "./Login.css";
-import { LoginContainer } from "./Component/LoginContainer";
+import { LoginContainer } from "./component/LoginContainer";
 export const Login = () => {
   return (
     <>
