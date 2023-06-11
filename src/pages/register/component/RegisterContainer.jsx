@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 
 export const RegisterContainer = () => {
-  const { SignupHandler, logoutHandler } = useAuth();
+  const { signupHandler, logoutHandler } = useAuth();
 
   const initialValue = {
     firstName: "",
@@ -21,7 +21,7 @@ export const RegisterContainer = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    SignupHandler(
+    signupHandler(
       inputData.userName,
       inputData.password,
       inputData.firstName,
@@ -31,7 +31,7 @@ export const RegisterContainer = () => {
 
   const guestHandler = () => {
     logoutHandler();
-    SignupHandler("guest", "guest", "Guest", "guest");
+    signupHandler("guest", "guest", "Guest", "guest");
   };
   return (
     <>

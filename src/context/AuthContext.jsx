@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const localStorageToken = JSON.parse(localStorage.getItem("loginTokenItem"));
   const [loginToken, setLoginToken] = useState(localStorageToken?.token);
 
-  const SignupHandler = async (username, password, firstName, dataOfBirth) => {
+  const signupHandler = async (username, password, firstName, dataOfBirth) => {
     try {
       const {
         data: { createdUser, encodedToken },
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
         isLoggedIn,
         loginToken,
         logoutHandler,
-        SignupHandler,
+        signupHandler,
       }}
     >
       {children}
