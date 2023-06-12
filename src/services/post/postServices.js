@@ -57,7 +57,7 @@ const editPostService = (token, dispatch, postData) => {
       data: { posts },
       status,
     } = axios.post(
-      `/api/posts/edit/${postData_id}`,
+      `/api/posts/edit/${postData._id}`,
       {
         postData,
       },
