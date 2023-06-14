@@ -1,6 +1,10 @@
-import "./Home.css"
-export const Home=()=>{
-    return (
-        <div>this is home page</div>
-    )
-}
+import "./Home.css";
+import { Header } from "../../common/index";
+export const Home = () => {
+  return (
+    <>
+      <Header />
+      <hr />
+    </>
+  );
+};
