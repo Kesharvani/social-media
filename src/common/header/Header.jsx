@@ -1,10 +1,9 @@
-import "./Header.css"
 import Hi5 from "../../assets/Hi5.jpeg";
 
 export const Header = () => {
   return (
     <>
-      <div className="header-wrapper">
+      <div className="flex justify-around">
         <div>
           <img src={Hi5} alt="logo" width="70px" height="50px" />
         </div>

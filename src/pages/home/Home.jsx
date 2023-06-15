@@ -1,4 +1,3 @@
-import "./Home.css";
 import { Header } from "../../common/index";
 export const Home = () => {
   return (
