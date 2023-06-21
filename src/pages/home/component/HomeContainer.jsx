@@ -3,6 +3,7 @@ import { MdExplore } from "react-icons/md";
 import { BsBookmarkStar } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 
+import {PostUserTile} from "./PostUserTile/"
 
 
 import {useState} from 'react'
@@ -10,7 +11,7 @@ export const HomeContainer=()=>{
     const [selectedTab,setSelectedTab]=useState('Home')
     return (
         <div className="flex">
-            <div className="flex flex-col flex-1 flex-wrap border-r-[1px]">
+            <nav className="flex flex-col flex-1 flex-wrap border-r-[1px]">
                 <button className={`flex  gap-3 items-center px-[2rem] py-[0.8rem] ${selectedTab==="Home"? "bg-slate-600":''}`} onClick={()=>setSelectedTab("Home")}>
                     <AiTwotoneHome size={24} className={`${selectedTab==="Home"? "bg-slate-600":''}`}/>
                     <p className={`text-xl ${selectedTab==="Home"? "bg-slate-600":''}`}>Home</p>
@@ -30,9 +31,11 @@ export const HomeContainer=()=>{
                 <button  className={`text-xl border text-white px-[2rem] py-[0.8rem] hover:bg-slate-400 mt-[0.5rem] ${selectedTab==="Post"? "bg-slate-600":''}`} onClick={()=>setSelectedTab("Post")}>
                     Post
                 </button>
-            </div>
-            <div className="flex-1 grow-[7]">div 2</div>
-            <div className="flex-1 flex-wrap">div 3</div>
+            </nav>
+            <section className="flex-1 grow-[7]">
+            <PostUserTile/>
+            </section>
+            <section className="flex-1 flex-wrap">div 3</section>
         </div>
     )
 }
