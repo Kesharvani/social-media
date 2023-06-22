@@ -3,7 +3,7 @@ import { MdExplore } from "react-icons/md";
 import { BsBookmarkStar } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 
-import {PostUserTile} from "./PostUserTile/"
+import {PostUserTile} from "./PostUserTile"
 
 
 import {useState} from 'react'
