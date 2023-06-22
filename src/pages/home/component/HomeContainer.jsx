@@ -4,7 +4,7 @@ import { BsBookmarkStar } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 
 import {PostUserTile} from "./PostUserTile"
-
+import {UserSuggestionTile} from "./UserSuggestionTile"
 
 import {useState} from 'react'
 export const HomeContainer=()=>{
@@ -35,7 +35,9 @@ export const HomeContainer=()=>{
             <section className="flex-1 grow-[7]">
             <PostUserTile/>
             </section>
-            <section className="flex-1 flex-wrap">div 3</section>
+            <section className="flex-1 flex-wrap grow-[1.8]">
+            <UserSuggestionTile/>
+            </section>
         </div>
     )
 }
