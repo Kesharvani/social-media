@@ -15,20 +15,6 @@ export const getAllUserService = async (dispatch) => {
   }
 };
 
-export const getUserService = async (dispatch, userId) => {
-  try {
-    const {
-      data: { user },
-      status,
-    } = await axios.get(`/api/users/bookmark/${userId}`);
-    if (status === 200 || status === 201) {
-      dispatch({ type: ACTION_TYPE.GET_USER, payload: user });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export const editUserService = async (token, dispatch, userData) => {
   try {
     const {
