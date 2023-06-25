@@ -1,4 +1,4 @@
-import { usePost } from "../../../context/PostContext";
+import { usePost } from "../../context/PostContext";
 
 export const UserDetailSection = ({
   fromPostUserTile,
