@@ -1,4 +1,4 @@
-import { UserDetailSection } from "./UserDetailSection";
+import { UserDetailSection } from "../../pages/home/component/UserDetailSection";
 
 export const UserSuggestionTile = ({ allUser }) => {
   return (

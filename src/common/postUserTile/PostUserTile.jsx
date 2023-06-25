@@ -3,7 +3,7 @@ import { BsBookmarkStar } from "react-icons/bs";
 import { FaRegComments } from "react-icons/fa";
 import { BsShare } from "react-icons/bs";
 
-import { UserDetailSection } from "./UserDetailSection";
+import { UserDetailSection } from "../../pages/home/component/UserDetailSection";
 
 export const PostUserTile = ({ posts }) => {
   return (
