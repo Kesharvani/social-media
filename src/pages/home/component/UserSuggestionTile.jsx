@@ -1,6 +1,6 @@
 import { UserDetailSection } from "./UserDetailSection";
 
-export const UserSuggestionTile = () => {
+export const UserSuggestionTile = ({ allUser }) => {
   return (
     <div className="flex flex-col pr-[1.5rem] pt-[1rem] gap-4">
       <div className="flex gap-2 justify-between">
@@ -10,8 +10,16 @@ export const UserSuggestionTile = () => {
         <button className="rounded px-[1rem] py-[0.5rem] border">Latest</button>
       </div>
       <span>Suggestions For You</span>
-      <UserDetailSection userDetailSection/>
-     <hr />
+      {allUser.map((item) => {
+        return (
+          <UserDetailSection
+            fromUserSuggestionTile
+            userForSuggestion={item}
+            key={item._id}
+          />
+        );
+      })}
+      <hr />
     </div>
   );
 };

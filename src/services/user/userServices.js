@@ -1,18 +1,8 @@
 import axios from "axios";
 
 import { ACTION_TYPE } from "../../utils/index";
-export const getAllUserService = async (dispatch) => {
-  try {
-    const {
-      data: { users },
-      status,
-    } = await axios.get("/api/users");
-    if (status === 200 || status === 201) {
-      dispatch({ type: ACTION_TYPE.GET_ALL_USER, payload: users });
-    }
-  } catch (error) {
-    console.error(error);
-  }
+export const getAllUserService = () => {
+  return axios.get("/api/users");
 };
 
 export const editUserService = async (token, dispatch, userData) => {

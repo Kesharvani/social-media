@@ -1,17 +1,41 @@
-export const UserDetailSection = ({postUserTile,userDetailSection}) => {
-  console.log("userDetailSection",userDetailSection)
+import { usePost } from "../../../context/PostContext";
+
+export const UserDetailSection = ({
+  fromPostUserTile,
+  fromUserSuggestionTile,
+  post,
+  userForSuggestion,
+}) => {
+  const { state } = usePost();
+  const postUser =
+    post && state?.allUser.find((item) => item.username === post?.username);
+
   return (
     <>
       <div className="bg-[#1c1e21] flex gap-3">
         <img src="" alt="userProfile" className="bg-[#1c1e21]" />
         <div className="flex flex-col">
           <div className="bg-[#1c1e21] flex gap-2">
-            <p className="bg-[#1c1e21]">Name is Here</p>
-            {postUserTile && <p className="bg-[#1c1e21]">date is here</p>}
+            {fromUserSuggestionTile ? (
+              <p className="bg-[#1c1e21]">{userForSuggestion?.firstName}</p>
+            ) : (
+              <p className="bg-[#1c1e21]">{postUser?.firstName}</p>
+            )}
+            {fromPostUserTile && (
+              <p className="bg-[#1c1e21]">{post?.createdAt.slice(0, 10)}</p>
+            )}
           </div>
-          <p className="bg-[#1c1e21]">userName</p>
+          {fromUserSuggestionTile ? (
+            <p className="bg-[#1c1e21]">@{userForSuggestion?.username}</p>
+          ) : (
+            <p className="bg-[#1c1e21]">@{postUser?.username}</p>
+          )}
         </div>
-        {userDetailSection&& <button className="self-start mt-[0.5rem] p-[0.3rem] border rounded bg-[#3E4042]">Follow</button>}
+        {fromUserSuggestionTile && (
+          <button className="self-start mt-[0.5rem] p-[0.3rem] border rounded bg-[#3E4042]">
+            Follow
+          </button>
+        )}
       </div>
     </>
   );

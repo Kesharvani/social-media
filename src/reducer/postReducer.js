@@ -5,6 +5,7 @@ export const initialValue = {
   postFollowing: [],
   userFollowing: [],
   currentUser: {},
+  allUser: [],
 };
 export const postReducer = (state, action) => {
   switch (action.type) {
@@ -14,6 +15,7 @@ export const postReducer = (state, action) => {
         posts: action.payload.posts,
         currentUser: action.payload.user,
         userFollowing: action.payload?.user?.following,
+        allUser: action.payload?.users,
       };
   }
 };

@@ -2,12 +2,14 @@ import { AiTwotoneHome } from "react-icons/ai";
 import { MdExplore } from "react-icons/md";
 import { BsBookmarkStar } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
+import {useState} from 'react'
 
 import {PostUserTile} from "./PostUserTile"
 import {UserSuggestionTile} from "./UserSuggestionTile"
+import {usePost} from "../../../context/PostContext"
 
-import {useState} from 'react'
 export const HomeContainer=()=>{
+    const {state}=usePost();
     const [selectedTab,setSelectedTab]=useState('Home')
     return (
         <div className="flex">
@@ -33,10 +35,10 @@ export const HomeContainer=()=>{
                 </button>
             </nav>
             <section className="flex-1 grow-[7]">
-            <PostUserTile/>
+            <PostUserTile posts={state.posts}/>
             </section>
             <section className="flex-1 flex-wrap grow-[1.8]">
-            <UserSuggestionTile/>
+            <UserSuggestionTile allUser={state.allUser}/>
             </section>
         </div>
     )

@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 
 import { getAllPostService } from "../services/index";
+import {getAllUserService} from "../services/index"
 import { initialValue, postReducer } from "../reducer/postReducer";
 import { ACTION_TYPE } from "../utils";
 
@@ -16,8 +17,13 @@ export const PostContextProvider = ({ children }) => {
         data: { posts },
         status,
       } = await getAllPostService();
+
+      const {
+        data: { users },
+      }=await getAllUserService();
+      
       if (status === 200 || status === 201) {
-        dispatch({ type: ACTION_TYPE.SUCCESS, payload: {posts,user} });
+        dispatch({ type: ACTION_TYPE.SUCCESS, payload: {posts,user,users} });
       }
     } catch (error) {
       console.error(error);
