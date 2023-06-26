@@ -6,6 +6,7 @@ export const initialValue = {
   userFollowing: [],
   currentUser: {},
   allUser: [],
+  bookmark: [],
 };
 export const postReducer = (state, action) => {
   switch (action.type) {
@@ -16,6 +17,16 @@ export const postReducer = (state, action) => {
         currentUser: action.payload.user,
         userFollowing: action.payload?.user?.following,
         allUser: action.payload?.users,
+      };
+    case ACTION_TYPE.ADDED_TO_BOOKMARK:
+      return {
+        ...state,
+        bookmark: action.payload,
+      };
+    case ACTION_TYPE.REMOVE_FROM_BOOKMARK:
+      return {
+        ...state,
+        bookmark: action.payload,
       };
   }
 };

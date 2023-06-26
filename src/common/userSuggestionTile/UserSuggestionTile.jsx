@@ -10,12 +10,12 @@ export const UserSuggestionTile = ({ allUser }) => {
         <button className="rounded px-[1rem] py-[0.5rem] border">Latest</button>
       </div>
       <span>Suggestions For You</span>
-      {allUser.map((item) => {
+      {allUser?.map((item) => {
         return (
           <UserDetailSection
             fromUserSuggestionTile
             userForSuggestion={item}
-            key={item._id}
+            key={item?._id}
           />
         );
       })}
