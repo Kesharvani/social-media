@@ -1,12 +1,13 @@
+import { BookMarkContainer } from "./component/BookMarkContainer";
+
 import { Header } from "../../common/index";
 import {Footer} from "../../common/index"
-import {HomeContainer} from "./component/HomeContainer"
-export const Home = () => {
+export const Bookmark = () => {
   return (
     <>
       <Header />
       <hr />
-      <HomeContainer/>
+      <BookMarkContainer/>
       <hr />
       <Footer/>
     </>
