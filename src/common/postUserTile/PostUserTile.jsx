@@ -9,20 +9,25 @@ import { UserDetailSection } from "../userDetailSection/UserDetailSection";
 import {
   addToBookmarkServices,
   removeFromBookmarkServices,
-} from "../../services";
+} from "../../services/index";
+
+import { likeServices, dislikeServices } from "../../services/index";
 import { usePost } from "../../context/PostContext";
 import { useAuth } from "../../context/AuthContext";
 
 export const PostUserTile = ({ posts }) => {
-  const { state, dispatch } = usePost();
-  const { loginToken } = useAuth(); 
+  const { state, dispatch, user } = usePost();
+  const { loginToken } = useAuth();
+  const likedByCurrentUser = (post, user) => {
+    return post.likes.likedBy?.find((item) => item.username === user.username);
+  };
   return (
     <>
       {posts?.map((post) => {
         return (
           <div
             className="flex flex-col p-[2rem] m-[0.8rem] shadow-md bg-[#1c1e21] gap-4 rounded"
-            key={post.id}
+            key={post._id}
           >
             <UserDetailSection fromPostUserTile post={post} />
             <div className="bg-[#1c1e21] flex flex-col gap-4">
@@ -31,10 +36,27 @@ export const PostUserTile = ({ posts }) => {
             </div>
             <div className="flex justify-between bg-[#1c1e21]">
               <div className="flex gap-2 bg-[#1c1e21]">
-                <button className="flex gap-1 bg-[#1c1e21]">
-                  <AiOutlineHeart size={24} className="bg-[#1c1e21]" />
-                  <span className="bg-[#1c1e21]">Like</span>
-                </button>
+                {likedByCurrentUser(post, user) ? (
+                  <div className="flex gap-1 bg-[#1c1e21]">
+                    <FcLike
+                      size={24}
+                      className="bg-[#1c1e21]"
+                      onClick={() =>
+                        dislikeServices(loginToken, dispatch, post)
+                      }
+                    />
+                    <span className="bg-[#1c1e21]">Like</span>
+                  </div>
+                ) : (
+                  <div className="flex gap-1 bg-[#1c1e21]">
+                    <AiOutlineHeart
+                      size={24}
+                      className="bg-[#1c1e21]"
+                      onClick={() => likeServices(loginToken, dispatch, post)}
+                    />
+                    <span className="bg-[#1c1e21]">Like</span>
+                  </div>
+                )}
                 <span className="bg-[#1c1e21]">{post?.likes?.likeCount}</span>
               </div>
               {state.bookmark.length > 0 &&

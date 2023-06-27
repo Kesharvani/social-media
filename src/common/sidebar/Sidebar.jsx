@@ -21,6 +21,11 @@ export const Sidebar = () => {
     navigate("/bookmark");
   };
 
+  const likeDislikePageHandler = () => {
+    setSelectedTab("Liked");
+    navigate("/like");
+  };
+
   return (
     <nav className="flex flex-col flex-1 flex-wrap border-r-[1px]">
       <button
@@ -79,7 +84,7 @@ export const Sidebar = () => {
         className={`flex  gap-3 items-center px-[2rem] py-[0.8rem] ${
           selectedTab === "Liked" ? "bg-slate-600" : ""
         }`}
-        onClick={() => setSelectedTab("Liked")}
+        onClick={likeDislikePageHandler}
       >
         <AiOutlineHeart
           size={24}
