@@ -7,6 +7,7 @@ export const initialValue = {
   currentUser: {},
   allUser: [],
   bookmark: [],
+  likeDislike: [],
 };
 export const postReducer = (state, action) => {
   switch (action.type) {
@@ -27,6 +28,16 @@ export const postReducer = (state, action) => {
       return {
         ...state,
         bookmark: action.payload,
+      };
+    case ACTION_TYPE.LIKE:
+      return {
+        ...state,
+        posts: action.payload,
+      };
+    case ACTION_TYPE.DISLIKE:
+      return {
+        ...state,
+        posts: action.payload,
       };
   }
 };

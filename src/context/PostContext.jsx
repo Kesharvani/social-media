@@ -1,16 +1,14 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 
 import { getAllPostService } from "../services/index";
-import {getAllUserService} from "../services/index"
+import { getAllUserService } from "../services/index";
 import { initialValue, postReducer } from "../reducer/postReducer";
 import { ACTION_TYPE } from "../utils";
 
 export const PostContext = createContext();
 export const PostContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(postReducer, initialValue);
-  const {
-    user
-  } = JSON.parse(localStorage.getItem("loginTokenItem"));
+  const { user } = JSON.parse(localStorage.getItem("loginTokenItem"));
   const getData = async () => {
     try {
       const {
@@ -20,10 +18,13 @@ export const PostContextProvider = ({ children }) => {
 
       const {
         data: { users },
-      }=await getAllUserService();
-      
+      } = await getAllUserService();
+
       if (status === 200 || status === 201) {
-        dispatch({ type: ACTION_TYPE.SUCCESS, payload: {posts,user,users} });
+        dispatch({
+          type: ACTION_TYPE.SUCCESS,
+          payload: { posts, user, users },
+        });
       }
     } catch (error) {
       console.error(error);
@@ -34,7 +35,7 @@ export const PostContextProvider = ({ children }) => {
   }, []);
   return (
     <>
-      <PostContext.Provider value={{ state, dispatch }}>
+      <PostContext.Provider value={{ state, dispatch, user }}>
         {children}
       </PostContext.Provider>
     </>
