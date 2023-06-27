@@ -8,9 +8,22 @@ export const Header = () => {
           <img src={Hi5} alt="logo" width="70px" height="50px" />
         </div>
         <div>
-          <input type="text" name="search" placeholder="Search By User" className="border-white border py-2 pr-6 pl-2"/>
+          <input
+            type="search"
+            name="search"
+            placeholder="Search By User"
+            className="border-white border rounded py-2 pr-6 pl-2 w-96 grayscale brightness-125 focus:outline-none "
+          />
         </div>
-        <div><img src={Hi5} alt="userProfile" className="border rounded-full" width="70px" height="50px"/></div>
+        <div>
+          <img
+            src={Hi5}
+            alt="userProfile"
+            className="border rounded-full"
+            width="70px"
+            height="50px"
+          />
+        </div>
       </div>
     </>
   );

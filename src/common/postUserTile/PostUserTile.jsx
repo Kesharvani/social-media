@@ -19,7 +19,7 @@ export const PostUserTile = ({ posts }) => {
   const { state, dispatch, user } = usePost();
   const { loginToken } = useAuth();
   const likedByCurrentUser = (post, user) => {
-    return post.likes.likedBy?.find((item) => item.username === user.username);
+    return post.likes?.likedBy?.find((item) => item.username === user.username);
   };
   return (
     <>
