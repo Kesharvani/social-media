@@ -3,3 +3,4 @@ export { Login } from "./login/Login.jsx";
 export { Register } from "./register/Register.jsx";
 export { Bookmark } from "./bookmark/Bookmark.jsx";
 export { LikeDislike } from "./likeDislike/LikeDislike.jsx";
+export { Explore } from "./explore/Explore.jsx";

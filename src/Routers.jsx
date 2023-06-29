@@ -5,11 +5,13 @@ import { Login } from "./pages/index.js";
 import { Register } from "./pages/index.js";
 import { Bookmark } from "./pages/index.js";
 import { LikeDislike } from "./pages/index.js";
+import { Explore } from "./pages/index.js";
 export const Routers = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/explore" element={<Explore />} />
         <Route path="/bookmark" element={<Bookmark />} />
         <Route path="/like" element={<LikeDislike />} />
         <Route path="/login" element={<Login />} />

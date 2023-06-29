@@ -15,6 +15,13 @@ export const Sidebar = () => {
     navigate("/");
   };
 
+  //redirect to explore handler
+
+  const exploreHandler = () => {
+    setSelectedTab("Explore");
+    navigate("/explore");
+  };
+
   // redirect to bookmark page
   const bookmarkHandler = () => {
     setSelectedTab("Bookmarks");
@@ -48,7 +55,7 @@ export const Sidebar = () => {
         className={`flex  gap-3 items-center px-[2rem] py-[0.8rem] ${
           selectedTab === "Explore" ? "bg-slate-600" : ""
         }`}
-        onClick={() => setSelectedTab("Explore")}
+        onClick={exploreHandler}
       >
         <MdExplore
           size={24}
