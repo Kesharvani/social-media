@@ -7,6 +7,7 @@ export const initialValue = {
   currentUser: {},
   allUser: [],
   bookmark: [],
+  searchTerm: "",
 };
 export const postReducer = (state, action) => {
   switch (action.type) {
@@ -58,6 +59,11 @@ export const postReducer = (state, action) => {
       return {
         ...state,
         userFollowing: [...state.userFollowing, action.payload?.followUser],
+      };
+    case ACTION_TYPE.SEARCH:
+      return {
+        ...state,
+        searchTerm: action.payload,
       };
   }
 };

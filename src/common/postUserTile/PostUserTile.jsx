@@ -18,12 +18,17 @@ import { useAuth } from "../../context/AuthContext";
 export const PostUserTile = ({ posts }) => {
   const { state, dispatch, user } = usePost();
   const { loginToken } = useAuth();
+
   const likedByCurrentUser = (post, user) => {
     return post.likes?.likedBy?.find((item) => item.username === user.username);
   };
+  
+  const searchFilterPostByUsername = posts.filter((item) =>
+    item.username.toUpperCase().includes(state.searchTerm.toUpperCase())
+  );
   return (
     <>
-      {posts?.map((post) => {
+      {searchFilterPostByUsername?.map((post) => {
         return (
           <div
             className="flex flex-col p-[2rem] m-[0.8rem] shadow-md bg-[#1c1e21] gap-4 rounded"
