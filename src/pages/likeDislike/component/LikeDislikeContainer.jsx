@@ -5,6 +5,19 @@ import { usePost } from "../../../context/PostContext";
 
 export const LikeDislikeContainer = () => {
   const { state, user } = usePost();
+
+  const filteredUserSuggestionForHome = state.allUser?.filter(
+    (userSuggestion) => {
+      if (user.username === userSuggestion.username) {
+        return false;
+      } else {
+        return state.userFollowing.every(
+          (item) => item.username !== userSuggestion.username
+        );
+      }
+    }
+  );
+
   return (
     <div className="flex">
       <Sidebar />
@@ -18,7 +31,7 @@ export const LikeDislikeContainer = () => {
         />
       </section>
       <section className="flex-1 flex-wrap grow-[1.8]">
-        <UserSuggestionTile allUser={[]} />
+        <UserSuggestionTile userDisplayForSuggestion={filteredUserSuggestionForHome} />
       </section>
     </div>
   );

@@ -1,4 +1,6 @@
 import { usePost } from "../../context/PostContext";
+import { useAuth } from "../../context/AuthContext";
+import { followServices } from "../../services/index";
 
 export const UserDetailSection = ({
   fromPostUserTile,
@@ -6,7 +8,8 @@ export const UserDetailSection = ({
   post,
   userForSuggestion,
 }) => {
-  const { state } = usePost();
+  const { state, dispatch } = usePost();
+  const { loginToken } = useAuth();
   const postUser =
     post && state?.allUser.find((item) => item.username === post?.username);
 
@@ -32,7 +35,12 @@ export const UserDetailSection = ({
           )}
         </div>
         {fromUserSuggestionTile && (
-          <button className="self-start mt-[0.5rem] p-[0.3rem] border rounded bg-[#3E4042]">
+          <button
+            className="self-start mt-[0.5rem] p-[0.3rem] border rounded bg-[#3E4042]"
+            onClick={() =>
+              followServices(loginToken, dispatch, userForSuggestion?._id)
+            }
+          >
             Follow
           </button>
         )}
