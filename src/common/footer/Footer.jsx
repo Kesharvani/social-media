@@ -10,7 +10,13 @@ export const Footer = () => {
     <div className="flex flex-col gap-4  items-center">
       <div className="flex justify-center gap-4">
         <Link to="/">
-          <img src={Hi5} alt="logo" width="70px" height="50px" />
+          <img
+            src={Hi5}
+            alt="logo"
+            width="70px"
+            height="50px"
+            className="border rounded-full"
+          />
         </Link>
       </div>
       <div className="flex gap-4 justify-center">
@@ -31,8 +37,8 @@ export const Footer = () => {
         </span>
       </div>
       <div>
-        Copyright
-        {" "}<span className="before:content-['\24B8']"> Shubham Kesharvani</span>
+        Copyright{" "}
+        <span className="before:content-['\24B8']"> Shubham Kesharvani</span>
       </div>
     </div>
   );
