@@ -1,9 +1,9 @@
 import { UserDetailSection } from "../userDetailSection/UserDetailSection";
 import { usePost } from "../../context/PostContext";
 import { ACTION_TYPE } from "../../utils";
-export const UserSuggestionTile = ({ allUser }) => {
-  const { dispatch } = usePost();
-
+export const UserSuggestionTile = ({ userDisplayForSuggestion }) => {
+  const { dispatch,user } = usePost();
+  
   return (
     <div className="flex flex-col pr-[1.5rem] pt-[1rem] gap-4">
       <div className="flex gap-2 justify-between">
@@ -21,7 +21,7 @@ export const UserSuggestionTile = ({ allUser }) => {
         </button>
       </div>
       <span>Suggestions For You</span>
-      {allUser?.map((item) => {
+      {userDisplayForSuggestion?.map((item) => {
         return (
           <UserDetailSection
             fromUserSuggestionTile

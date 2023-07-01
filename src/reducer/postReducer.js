@@ -54,5 +54,10 @@ export const postReducer = (state, action) => {
           (item1, item2) => item2?.likes?.likeCount - item1?.likes?.likeCount
         ),
       };
+    case ACTION_TYPE.FOLLOW:
+      return {
+        ...state,
+        userFollowing: [...state.userFollowing, action.payload?.followUser],
+      };
   }
 };
