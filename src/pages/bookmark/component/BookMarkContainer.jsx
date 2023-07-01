@@ -3,7 +3,19 @@ import { PostUserTile } from "../../../common/postUserTile/PostUserTile";
 import { UserSuggestionTile } from "../../../common/userSuggestionTile/UserSuggestionTile";
 import { usePost } from "../../../context/PostContext";
 export const BookMarkContainer = () => {
-  const { state } = usePost();
+  const { state, user } = usePost();
+
+  const filteredUserSuggestionForHome = state.allUser?.filter(
+    (userSuggestion) => {
+      if (user.username === userSuggestion.username) {
+        return false;
+      } else {
+        return state.userFollowing.every(
+          (item) => item.username !== userSuggestion.username
+        );
+      }
+    }
+  );
   return (
     <div className="flex">
       <Sidebar />
@@ -15,7 +27,9 @@ export const BookMarkContainer = () => {
         />
       </section>
       <section className="flex-1 flex-wrap grow-[1.8]">
-        <UserSuggestionTile allUser={[]} />
+        <UserSuggestionTile
+          userDisplayForSuggestion={filteredUserSuggestionForHome}
+        />
       </section>
     </div>
   );
