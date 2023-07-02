@@ -6,14 +6,14 @@ import { useAuth } from "../../../context/AuthContext";
 
 export const LikeDislikeContainer = () => {
   const { state } = usePost();
-  const {currentUser} = useAuth()
-  const filteredUserSuggestionForHome = state.allUser?.filter(
+  const { currentUser } = useAuth();
+  const filteredUserSuggestionForHome = state?.allUser?.filter(
     (userSuggestion) => {
-      if (currentUser?.username === userSuggestion?.username) {
+      if (currentUser?.username === userSuggestion.username) {
         return false;
       } else {
-        return state?.userFollowing?.every(
-          (item) => item?.username !== userSuggestion?.username
+        return !state?.userFollowing?.some(
+          (item) => item?.username === userSuggestion?.username
         );
       }
     }
@@ -32,7 +32,9 @@ export const LikeDislikeContainer = () => {
         />
       </section>
       <section className="flex-1 flex-wrap grow-[1.8]">
-        <UserSuggestionTile userDisplayForSuggestion={filteredUserSuggestionForHome} />
+        <UserSuggestionTile
+          userDisplayForSuggestion={filteredUserSuggestionForHome}
+        />
       </section>
     </div>
   );

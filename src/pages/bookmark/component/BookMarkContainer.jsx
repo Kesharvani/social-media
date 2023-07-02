@@ -5,15 +5,15 @@ import { usePost } from "../../../context/PostContext";
 import { useAuth } from "../../../context/AuthContext";
 export const BookMarkContainer = () => {
   const { state } = usePost();
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth();
 
-  const filteredUserSuggestionForHome = state.allUser?.filter(
+  const filteredUserSuggestionForHome = state?.allUser?.filter(
     (userSuggestion) => {
       if (currentUser?.username === userSuggestion?.username) {
         return false;
       } else {
-        return state?.userFollowing?.every(
-          (item) => item.username !== userSuggestion.username
+        return !state?.userFollowing?.some(
+          (item) => item?.username === userSuggestion?.username
         );
       }
     }
@@ -23,7 +23,7 @@ export const BookMarkContainer = () => {
       <Sidebar />
       <section className="flex-1 grow-[7]">
         <PostUserTile
-          posts={state.posts.filter((post) =>
+          posts={state.posts?.filter((post) =>
             state.bookmark.some(({ _id }) => post._id === _id)
           )}
         />

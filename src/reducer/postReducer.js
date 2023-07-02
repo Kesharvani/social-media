@@ -56,7 +56,7 @@ export const postReducer = (state, action) => {
     case ACTION_TYPE.FOLLOW:
       return {
         ...state,
-        userFollowing: [...state.userFollowing, action.payload?.followUser],
+        userFollowing: [...state?.userFollowing, action.payload?.followUser],
       };
     case ACTION_TYPE.SEARCH:
       return {
