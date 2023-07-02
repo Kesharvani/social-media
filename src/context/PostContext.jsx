@@ -8,7 +8,8 @@ import { ACTION_TYPE } from "../utils";
 export const PostContext = createContext();
 export const PostContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(postReducer, initialValue);
-  const { user } = JSON.parse(localStorage.getItem("loginTokenItem"));
+  const userDetails = JSON.parse(localStorage.getItem("loginTokenItem"));
+  const user=userDetails?.user
   const getData = async () => {
     try {
       const {

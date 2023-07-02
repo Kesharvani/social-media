@@ -1,8 +1,11 @@
 import { useState } from "react";
 
 import { useAuth } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const RegisterContainer = () => {
+
+  const navigate=useNavigate()
   const { signupHandler, logoutHandler } = useAuth();
 
   const initialValue = {
@@ -34,7 +37,7 @@ export const RegisterContainer = () => {
     signupHandler("guest", "guest", "Guest", "guest");
   };
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="flex flex-col gap-5 justify-center items-center">
       <form onSubmit={submitHandler} className="flex flex-col gap-5 w-[30rem] mb-[3rem] p-[2rem] shadow-white shadow-md">
         <h3 className="text-[1.87rem]">Sign up</h3>
         <div className="flex flex-col">
@@ -101,6 +104,8 @@ export const RegisterContainer = () => {
           <input type="submit" className="border border-white rounded-md p-[0.5rem] w-[24rem] bg-[#a82723] hover:bg-[#b92b27] cursor-pointer"/>
         </div>
       </form>
+      <h3>already Registered?</h3>
+      <button onClick={()=>navigate("/")} className="border border-white rounded-md p-[0.5rem] w-[24rem] bg-[#a82723] hover:bg-[#b92b27] cursor-pointer">Login</button>
       <button onClick={guestHandler} className="border border-white rounded-md p-[0.5rem] w-[24rem] bg-[#a82723] hover:bg-[#b92b27] cursor-pointer">Login As Guest</button>
     </div>
   );

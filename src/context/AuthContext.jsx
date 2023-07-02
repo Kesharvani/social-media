@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
         );
         setIsLoggedIn(true);
         setLoginToken(encodedToken);
-        navigate("/");
+        navigate("/home");
       }
     } catch (error) {
       console.error(error);
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
         );
         setLoginToken(encodedToken);
         setIsLoggedIn(true);
-        navigate("/");
+        navigate("/home");
       }
     } catch (error) {
       console.error(error);

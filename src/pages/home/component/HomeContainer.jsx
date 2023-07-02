@@ -8,7 +8,7 @@ export const HomeContainer = () => {
 
   const filteredPostsForHome = state?.posts?.filter(
     (post) =>{
-      if(user.username===post.username){
+      if(user?.username===post.username){
         return true
       }
       else{
@@ -20,7 +20,7 @@ export const HomeContainer = () => {
   const filteredUserSuggestionForHome = state.allUser?.filter(
     (userSuggestion) =>
     {
-      if(user.username === userSuggestion.username){
+      if(user?.username === userSuggestion.username){
         return false
       }
       else{
