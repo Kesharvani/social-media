@@ -12,7 +12,7 @@ export const HomeContainer = () => {
         return true
       }
       else{
-        return state.userFollowing.some(item=>item.username===post.username)
+        return state.userFollowing?.some(item=>item.username===post.username)
       }
     }
   );
@@ -24,7 +24,7 @@ export const HomeContainer = () => {
         return false
       }
       else{
-       return state.userFollowing.every(item=>item.username!==userSuggestion.username)
+       return state.userFollowing?.every(item=>item.username!==userSuggestion.username)
       }
     }
   );
