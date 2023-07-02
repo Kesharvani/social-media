@@ -2,15 +2,17 @@ import { Sidebar } from "../../../common/sidebar/Sidebar";
 import { PostUserTile } from "../../../common/postUserTile/PostUserTile";
 import { UserSuggestionTile } from "../../../common/userSuggestionTile/UserSuggestionTile";
 import { usePost } from "../../../context/PostContext";
+import { useAuth } from "../../../context/AuthContext";
 export const BookMarkContainer = () => {
-  const { state, user } = usePost();
+  const { state } = usePost();
+  const {currentUser} = useAuth()
 
   const filteredUserSuggestionForHome = state.allUser?.filter(
     (userSuggestion) => {
-      if (user.username === userSuggestion.username) {
+      if (currentUser?.username === userSuggestion?.username) {
         return false;
       } else {
-        return state.userFollowing.every(
+        return state?.userFollowing?.every(
           (item) => item.username !== userSuggestion.username
         );
       }
