@@ -4,7 +4,6 @@ export const initialValue = {
   posts: [],
   postFollowing: [],
   userFollowing: [],
-  currentUser: {},
   allUser: [],
   bookmark: [],
   searchTerm: "",
@@ -15,8 +14,7 @@ export const postReducer = (state, action) => {
       return {
         ...state,
         posts: action.payload.posts,
-        currentUser: action.payload.user,
-        userFollowing: action.payload?.user?.following,
+        userFollowing: action.payload?.currentUser?.following,
         allUser: action.payload?.users,
       };
     case ACTION_TYPE.ADDED_TO_BOOKMARK:

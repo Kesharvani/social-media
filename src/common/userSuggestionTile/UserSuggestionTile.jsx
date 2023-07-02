@@ -2,7 +2,7 @@ import { UserDetailSection } from "../userDetailSection/UserDetailSection";
 import { usePost } from "../../context/PostContext";
 import { ACTION_TYPE } from "../../utils";
 export const UserSuggestionTile = ({ userDisplayForSuggestion }) => {
-  const { dispatch,user } = usePost();
+  const { dispatch } = usePost();
   
   return (
     <div className="flex flex-col pr-[1.5rem] pt-[1rem] gap-4">

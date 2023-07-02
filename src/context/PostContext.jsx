@@ -8,6 +8,7 @@ import { useAuth } from "./AuthContext";
 
 export const PostContext = createContext();
 export const PostContextProvider = ({ children }) => {
+  const { currentUser } = useAuth();
   const [state, dispatch] = useReducer(postReducer, initialValue);
   const getData = async () => {
     try {
@@ -20,10 +21,10 @@ export const PostContextProvider = ({ children }) => {
         data: { users },
       } = await getAllUserService();
 
-      if ((status === 200 || status === 201)) {
+      if (status === 200 || status === 201) {
         dispatch({
           type: ACTION_TYPE.SUCCESS,
-          payload: { posts, users },
+          payload: { posts, users, currentUser },
         });
       }
     } catch (error) {

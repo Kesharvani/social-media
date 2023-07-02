@@ -17,15 +17,14 @@ export const HomeContainer = () => {
       }
     }
   );
-
-  const filteredUserSuggestionForHome = state.allUser?.filter(
-    (userSuggestion) =>
+  const filteredUserSuggestionForHome = state?.allUser?.filter(
+     (userSuggestion) =>
     {
       if(currentUser?.username === userSuggestion.username){
         return false
       }
       else{
-       return state.userFollowing?.every(item=>item.username!==userSuggestion.username)
+       return !state?.userFollowing?.some(item=>item?.username===userSuggestion?.username)
       }
     }
   );
