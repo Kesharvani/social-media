@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const localStorageToken = JSON.parse(localStorage.getItem("loginTokenItem"));
   const [loginToken, setLoginToken] = useState(localStorageToken?.token);
+  const [currentUser, setCurrentUser] = useState(localStorageToken?.user);
 
   const signupHandler = async (username, password, firstName, dataOfBirth) => {
     try {
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }) => {
           })
         );
         setIsLoggedIn(true);
+        setCurrentUser(createdUser);
         setLoginToken(encodedToken);
         navigate("/home");
       }
@@ -46,6 +48,7 @@ export const AuthProvider = ({ children }) => {
           JSON.stringify({ token: encodedToken, user: foundUser })
         );
         setLoginToken(encodedToken);
+        setCurrentUser(foundUser);
         setIsLoggedIn(true);
         navigate("/home");
       }
@@ -66,6 +69,7 @@ export const AuthProvider = ({ children }) => {
         loginToken,
         logoutHandler,
         signupHandler,
+        currentUser,
       }}
     >
       {children}

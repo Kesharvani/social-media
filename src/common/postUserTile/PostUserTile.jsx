@@ -16,11 +16,11 @@ import { usePost } from "../../context/PostContext";
 import { useAuth } from "../../context/AuthContext";
 
 export const PostUserTile = ({ posts }) => {
-  const { state, dispatch, user } = usePost();
-  const { loginToken } = useAuth();
+  const { state, dispatch } = usePost();
+  const { loginToken,currentUser } = useAuth();
 
-  const likedByCurrentUser = (post, user) => {
-    return post.likes?.likedBy?.find((item) => item.username === user.username);
+  const likedByCurrentUser = (post, currentUser) => {
+    return post.likes?.likedBy?.find((item) => item?.username === currentUser?.username);
   };
   
   const searchFilterPostByUsername = posts.filter((item) =>
@@ -41,7 +41,7 @@ export const PostUserTile = ({ posts }) => {
             </div>
             <div className="flex justify-between bg-[#1c1e21]">
               <div className="flex gap-2 bg-[#1c1e21]">
-                {likedByCurrentUser(post, user) ? (
+                {likedByCurrentUser(post, currentUser) ? (
                   <div className="flex gap-1 bg-[#1c1e21]">
                     <FcLike
                       size={24}

@@ -12,7 +12,7 @@ export const Sidebar = () => {
 
   const homePageHandler = () => {
     setSelectedTab("Home");
-    navigate("/");
+    navigate("/home");
   };
 
   //redirect to explore handler

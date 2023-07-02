@@ -6,6 +6,6 @@ export const RequireAuth=({children})=>{
     const {isLoggedIn}=useAuth()
     const location = useLocation();
     return (
-        isLoggedIn?children:<Navigate to="/login" state={{ from: location }}></Navigate>
+        isLoggedIn?children:<Navigate to="/" state={{ from: location }}></Navigate>
     )
 }

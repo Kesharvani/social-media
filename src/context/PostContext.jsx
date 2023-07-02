@@ -4,12 +4,11 @@ import { getAllPostService } from "../services/index";
 import { getAllUserService } from "../services/index";
 import { initialValue, postReducer } from "../reducer/postReducer";
 import { ACTION_TYPE } from "../utils";
+import { useAuth } from "./AuthContext";
 
 export const PostContext = createContext();
 export const PostContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(postReducer, initialValue);
-  const userDetails = JSON.parse(localStorage.getItem("loginTokenItem"));
-  const user=userDetails?.user
   const getData = async () => {
     try {
       const {
@@ -21,10 +20,10 @@ export const PostContextProvider = ({ children }) => {
         data: { users },
       } = await getAllUserService();
 
-      if (status === 200 || status === 201) {
+      if ((status === 200 || status === 201)) {
         dispatch({
           type: ACTION_TYPE.SUCCESS,
-          payload: { posts, user, users },
+          payload: { posts, users },
         });
       }
     } catch (error) {
@@ -36,7 +35,7 @@ export const PostContextProvider = ({ children }) => {
   }, []);
   return (
     <>
-      <PostContext.Provider value={{ state, dispatch, user }}>
+      <PostContext.Provider value={{ state, dispatch }}>
         {children}
       </PostContext.Provider>
     </>

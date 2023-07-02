@@ -2,13 +2,14 @@ import { Sidebar } from "../../../common/sidebar/Sidebar";
 import { PostUserTile } from "../../../common/postUserTile/PostUserTile";
 import { UserSuggestionTile } from "../../../common/userSuggestionTile/UserSuggestionTile";
 import { usePost } from "../../../context/PostContext";
+import { useAuth } from "../../../context/AuthContext";
 
 export const HomeContainer = () => {
-  const { state, user } = usePost();
-
+  const { state } = usePost();
+  const {currentUser} = useAuth()
   const filteredPostsForHome = state?.posts?.filter(
     (post) =>{
-      if(user?.username===post.username){
+      if(currentUser?.username===post.username){
         return true
       }
       else{
@@ -20,7 +21,7 @@ export const HomeContainer = () => {
   const filteredUserSuggestionForHome = state.allUser?.filter(
     (userSuggestion) =>
     {
-      if(user?.username === userSuggestion.username){
+      if(currentUser?.username === userSuggestion.username){
         return false
       }
       else{
