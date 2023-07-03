@@ -58,6 +58,13 @@ export const postReducer = (state, action) => {
         ...state,
         userFollowing: [...state?.userFollowing, action.payload?.followUser],
       };
+    case ACTION_TYPE.UNFOLLOW:
+      return {
+        ...state,
+        userFollowing: state.userFollowing?.filter(
+          (item) => item.username !== action.payload?.followUser.username
+        ),
+      };
     case ACTION_TYPE.SEARCH:
       return {
         ...state,

@@ -5,8 +5,10 @@ import { useState } from "react";
 import { usePost } from "../../context/PostContext";
 import { useAuth } from "../../context/AuthContext";
 import { followServices } from "../../services/index";
-import { User } from "../user/User";
 import { deletePostService } from "../../services/post/postServices";
+import { unfollowServices } from "../../services/followUnfollow/followUnfollowServices";
+import { User } from "../user/User";
+
 export const UserDetailSection = ({
   fromPostUserTile,
   fromUserSuggestionTile,
@@ -18,11 +20,21 @@ export const UserDetailSection = ({
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
   const [buttonVisible, setButtonVisible] = useState(false);
-  const userToFollow = state?.allUser.find(
+
+  // userId of particular post
+  const userOfPost = state?.allUser.find(
     (user) => user?.username === post?.username
   );
+
+  // follow from post tile and setting button not visible
   const followHandlerFromPost = () => {
-    followServices(loginToken, dispatch, userToFollow?._id);
+    followServices(loginToken, dispatch, userOfPost?._id);
+    setButtonVisible((prev) => !prev);
+  };
+
+  // Unfollow a user and setting button not visible
+  const unFollowHandlerFromPost = () => {
+    unfollowServices(loginToken, dispatch, userOfPost._id);
     setButtonVisible((prev) => !prev);
   };
   return (
@@ -67,9 +79,7 @@ export const UserDetailSection = ({
                 <div className="absolute gap-1 z-10 right-0 top-6 shadow-2xl">
                   <button
                     className="px-[1rem] py-[0.5rem] border rounded"
-                    onClick={() =>
-                      deletePostService(loginToken, dispatch, post._id)
-                    }
+                    onClick={unFollowHandlerFromPost}
                   >
                     UnFollow
                   </button>

@@ -28,11 +28,15 @@ export const unfollowServices = async (token, dispatch, followUserId) => {
     const {
       data: { user, followUser },
       status,
-    } = await axios.post(`/api/users/unfollow/${followUserId}`, {
-      headers: {
-        authorization: token,
-      },
-    });
+    } = await axios.post(
+      `/api/users/unfollow/${followUserId}`,
+      {},
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
     if (status === 200 || status === 201) {
       dispatch({ type: ACTION_TYPE.UNFOLLOW, payload: { user, followUser } });
     }
