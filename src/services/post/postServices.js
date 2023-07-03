@@ -35,12 +35,12 @@ const createPostService = (token, dispatch, post) => {
   }
 };
 
-const deletePostService = (token, dispatch, postId) => {
+const deletePostService = async (token, dispatch, postId) => {
   try {
     const {
       data: { posts },
       status,
-    } = axios.post(`/api/posts/${postId}`, {
+    } = await axios.delete(`/api/posts/${postId}`, {
       headers: { authorization: token },
     });
     if (status === 200 || status === 201) {

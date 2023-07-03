@@ -63,5 +63,10 @@ export const postReducer = (state, action) => {
         ...state,
         searchTerm: action.payload,
       };
+    case ACTION_TYPE.POST_DELETED:
+      return {
+        ...state,
+        posts: action.payload,
+      };
   }
 };
