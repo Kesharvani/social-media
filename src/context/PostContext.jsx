@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 import { getAllPostService } from "../services/index";
 import { getAllUserService } from "../services/index";
@@ -10,6 +16,7 @@ export const PostContext = createContext();
 export const PostContextProvider = ({ children }) => {
   const { currentUser } = useAuth();
   const [state, dispatch] = useReducer(postReducer, initialValue);
+  const [isPostTextFieldFocused, setIsPostTextFieldFocused] = useState(false);
   const getData = async () => {
     try {
       const {
@@ -31,12 +38,23 @@ export const PostContextProvider = ({ children }) => {
       console.error(error);
     }
   };
+
+  const focusTextField = (isFocus) => {
+    setIsPostTextFieldFocused(isFocus);
+  };
   useEffect(() => {
     getData();
   }, []);
   return (
     <>
-      <PostContext.Provider value={{ state, dispatch }}>
+      <PostContext.Provider
+        value={{
+          state,
+          dispatch,
+          isPostTextFieldFocused,
+          focusTextField,
+        }}
+      >
         {children}
       </PostContext.Provider>
     </>

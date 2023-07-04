@@ -3,26 +3,30 @@ import { GrEmoji } from "react-icons/gr";
 import { useAuth } from "../../../context/AuthContext";
 import { usePost } from "../../../context/PostContext";
 import { createPostService } from "../../../services/index";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 export const CreatPostTile = () => {
   const { loginToken } = useAuth();
-  const { dispatch } = usePost();
+  const { dispatch, isPostTextFieldFocused, focusTextField } = usePost();
   let postData = { content: "" };
-  const inputRef=useRef(null)
+  const inputRef = useRef(null);
   const createPostHandler = (e) => {
     postData = { ...postData, content: e.target.value };
   };
   const onClickCreatePostHandler = (e) => {
-    e.preventDefault()
-    if(inputRef.current.value===''||inputRef.current.value===null){
-      inputRef.current.value='';
-    }
-    else{
+    e.preventDefault();
+    if (inputRef.current.value === "" || inputRef.current.value === null) {
+      inputRef.current.value = "";
+    } else {
       createPostService(loginToken, dispatch, postData);
-      inputRef.current.value='';
+      inputRef.current.value = "";
     }
-    
   };
+
+  useEffect(() => {
+    if (isPostTextFieldFocused) {
+      inputRef.current.focus();
+    }
+  }, [focusTextField]);
   return (
     <form
       className="flex flex-col p-[2rem] m-[0.8rem] shadow-md bg-[#1c1e21] gap-4 rounded"
@@ -39,6 +43,7 @@ export const CreatPostTile = () => {
           rows="5"
           placeholder="Whats happening?"
           className="grow bg-[#1c1e21] p-[1rem]"
+          onBlur={()=>focusTextField(false)}
           ref={inputRef}
           onChange={createPostHandler}
         ></textarea>

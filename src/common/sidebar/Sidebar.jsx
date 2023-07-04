@@ -4,9 +4,11 @@ import { BsBookmarkStar } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { usePost } from "../../context/PostContext";
 
 export const Sidebar = () => {
   const navigate = useNavigate();
+  const { focusTextField } = usePost();
   const [selectedTab, setSelectedTab] = useState("Home");
   //redirect to home page
 
@@ -27,12 +29,18 @@ export const Sidebar = () => {
     setSelectedTab("Bookmarks");
     navigate("/bookmark");
   };
-
+  // redire to like page
   const likeDislikePageHandler = () => {
     setSelectedTab("Liked");
     navigate("/like");
   };
 
+  // redirect to home page and focus on text area
+  const postButtonHandler = () => {
+    navigate("/home");
+    setSelectedTab("Post");
+    focusTextField(true);
+  };
   return (
     <nav className="flex flex-col flex-1 flex-wrap border-r-[1px]">
       <button
@@ -107,7 +115,7 @@ export const Sidebar = () => {
         className={`text-xl border text-white px-[2rem] py-[0.8rem] hover:bg-slate-400 mt-[0.5rem] ${
           selectedTab === "Post" ? "bg-slate-600" : ""
         }`}
-        onClick={() => setSelectedTab("Post")}
+        onClick={postButtonHandler}
       >
         Post
       </button>
