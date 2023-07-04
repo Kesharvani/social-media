@@ -14,8 +14,14 @@ export const CreatPostTile = () => {
   };
   const onClickCreatePostHandler = (e) => {
     e.preventDefault()
-    createPostService(loginToken, dispatch, postData);
-    inputRef.current.value='';
+    if(inputRef.current.value===''||inputRef.current.value===null){
+      inputRef.current.value='';
+    }
+    else{
+      createPostService(loginToken, dispatch, postData);
+      inputRef.current.value='';
+    }
+    
   };
   return (
     <form
