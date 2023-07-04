@@ -13,15 +13,15 @@ const getPostOfUserFromUserIdService = (username) => {
   return axios.get(`/api/posts/user/${username}`);
 };
 
-const createPostService = (token, dispatch, post) => {
+const createPostService = async (token, dispatch, postData) => {
   try {
     const {
       data: { posts },
       status,
-    } = axios.post(
-      "/api/posts",
+    } = await axios.post(
+      `/api/posts`,
       {
-        postData: post,
+        postData,
       },
       {
         headers: { authorization: token },

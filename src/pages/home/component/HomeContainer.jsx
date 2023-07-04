@@ -3,28 +3,28 @@ import { PostUserTile } from "../../../common/postUserTile/PostUserTile";
 import { UserSuggestionTile } from "../../../common/userSuggestionTile/UserSuggestionTile";
 import { usePost } from "../../../context/PostContext";
 import { useAuth } from "../../../context/AuthContext";
+import { CreatPostTile } from "./CreatPostTile";
 
 export const HomeContainer = () => {
   const { state } = usePost();
-  const {currentUser} = useAuth()
-  const filteredPostsForHome = state?.posts?.filter(
-    (post) =>{
-      if(currentUser?.username===post.username){
-        return true
-      }
-      else{
-        return state.userFollowing?.some(item=>item.username===post.username)
-      }
+  const { currentUser } = useAuth();
+  const filteredPostsForHome = state?.posts?.filter((post) => {
+    if (currentUser?.username === post.username) {
+      return true;
+    } else {
+      return state.userFollowing?.some(
+        (item) => item.username === post.username
+      );
     }
-  );
+  });
   const filteredUserSuggestionForHome = state?.allUser?.filter(
-     (userSuggestion) =>
-    {
-      if(currentUser?.username === userSuggestion.username){
-        return false
-      }
-      else{
-       return !state?.userFollowing?.some(item=>item?.username===userSuggestion?.username)
+    (userSuggestion) => {
+      if (currentUser?.username === userSuggestion.username) {
+        return false;
+      } else {
+        return !state?.userFollowing?.some(
+          (item) => item?.username === userSuggestion?.username
+        );
       }
     }
   );
@@ -32,6 +32,7 @@ export const HomeContainer = () => {
     <div className="flex">
       <Sidebar />
       <section className="flex-1 grow-[7]">
+        <CreatPostTile/>
         <PostUserTile posts={filteredPostsForHome} />
       </section>
       <section className="flex-1 flex-wrap grow-[1.8]">

@@ -75,5 +75,10 @@ export const postReducer = (state, action) => {
         ...state,
         posts: action.payload,
       };
+    case ACTION_TYPE.CREATED_POST:
+      return {
+        ...state,
+        posts: action.payload,
+      };
   }
 };
