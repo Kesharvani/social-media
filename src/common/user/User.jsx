@@ -15,7 +15,7 @@ export const User = ({
           <img
           src={userForSuggestion?.image}
           alt="userProfile"
-          className="bg-[#1c1e21] rounded-full h-full w-full"
+          className="bg-[#1c1e21] h-full w-full"
         />
         </div>
         

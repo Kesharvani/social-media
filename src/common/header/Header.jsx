@@ -25,9 +25,7 @@ export const Header = () => {
           <img
             src={currentUser?.image}
             alt="currentUserProfile"
-            className="border rounded-lg"
-            width="60px"
-            height="50px"
+            className="border rounded-lg h-[50px] w-[60px]"
           />
         </div>
       </div>
