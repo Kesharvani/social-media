@@ -5,7 +5,7 @@ import { usePost } from "../../../context/PostContext";
 import { createPostService } from "../../../services/index";
 import { useEffect, useRef } from "react";
 export const CreatPostTile = () => {
-  const { loginToken } = useAuth();
+  const { loginToken,currentUser } = useAuth();
   const { dispatch, isPostTextFieldFocused, focusTextField } = usePost();
   let postData = { content: "" };
   const inputRef = useRef(null);
@@ -34,7 +34,11 @@ export const CreatPostTile = () => {
     >
       <div className="flex gap-4 bg-[#1c1e21] w-full">
         <div className="bg-[#1c1e21]">
-          <img src="" alt="currentUserImage" width="70px" height="50px" />
+          <img
+            src={currentUser?.image}
+            alt="currentUserImage"
+            className="border rounded-lg h-[50px] w-[60px]"
+          />
         </div>
         <textarea
           name="createpost"
@@ -43,7 +47,7 @@ export const CreatPostTile = () => {
           rows="5"
           placeholder="Whats happening?"
           className="grow bg-[#1c1e21] p-[1rem]"
-          onBlur={()=>focusTextField(false)}
+          onBlur={() => focusTextField(false)}
           ref={inputRef}
           onChange={createPostHandler}
         ></textarea>

@@ -39,7 +39,7 @@ export const UserDetailSection = ({
   };
   return (
     <>
-      <div className="bg-[#1c1e21] flex justify-between">
+      <div className="bg-[#1c1e21] flex gap-3 justify-between">
         <User
           fromPostUserTile={fromPostUserTile}
           fromUserSuggestionTile={fromUserSuggestionTile}

@@ -14,6 +14,8 @@ export const users = [
     password: "adarshBalika123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    image:
+      "https://i.postimg.cc/Vv3T2gFg/rahadiansyah-CV3n-End-R5-Y-unsplash.jpg",
   },
   {
     _id: uuid(),
@@ -23,5 +25,6 @@ export const users = [
     password: "shubhamsoni123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    image: "https://i.postimg.cc/7Y2jSvxW/Yash-Patidar.jpg",
   },
 ];

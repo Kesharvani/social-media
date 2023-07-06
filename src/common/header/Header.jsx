@@ -1,13 +1,16 @@
 import Hi5 from "../../assets/Hi5.jpeg";
+import { useAuth } from "../../context/AuthContext";
 import {usePost} from "../../context/PostContext"
 import { ACTION_TYPE } from "../../utils";
 export const Header = () => {
   const {dispatch} =usePost()
+  const {currentUser}=useAuth();
+
   return (
     <>
       <div className="flex px-12 py-4 justify-between items-center">
         <div>
-          <img src={Hi5} alt="logo" width="70px" height="50px" />
+          <img src={Hi5} alt="logo" width="70px" height="50px" className="border rounded-full"/>
         </div>
         <div>
           <input
@@ -20,10 +23,10 @@ export const Header = () => {
         </div>
         <div>
           <img
-            src={Hi5}
-            alt="userProfile"
-            className="border rounded-full"
-            width="70px"
+            src={currentUser?.image}
+            alt="currentUserProfile"
+            className="border rounded-lg"
+            width="60px"
             height="50px"
           />
         </div>
