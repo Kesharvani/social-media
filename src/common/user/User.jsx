@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { usePost } from "../../context/PostContext";
 export const User = ({
   fromUserSuggestionTile,
@@ -5,6 +7,7 @@ export const User = ({
   post,
   fromPostUserTile,
 }) => {
+  const navigate=useNavigate();
   const { state } = usePost();
   const postUser =
     post && state?.allUser.find((item) => item.username === post?.username);
@@ -16,6 +19,7 @@ export const User = ({
           src={userForSuggestion?.image}
           alt="userProfile"
           className="bg-[#1c1e21] h-full w-full"
+          onClick={()=>navigate(`/profile/${userForSuggestion?.username}`)}
         />
         </div>
         
@@ -26,6 +30,7 @@ export const User = ({
           width="60px"
           height="50px"
           className="bg-[#1c1e21] border rounded-lg h-[50px] self-center"
+          onClick={()=>navigate(`/profile/${postUser?.username}`)}
         />
       )}
 

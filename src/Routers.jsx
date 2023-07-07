@@ -46,7 +46,7 @@ export const Routers = () => {
           }
         />
         <Route
-          path="/profile"
+          path="/profile/:username"
           element={
             <RequireAuth>
               <UserProfile />

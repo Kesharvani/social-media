@@ -37,7 +37,7 @@ export const Header = () => {
             src={currentUser?.image}
             alt="currentUserProfile"
             className="border rounded-lg h-[50px] w-[60px]"
-            onClick={() => navigate("/profile")}
+            onClick={() => navigate(`/profile/${currentUser.username}`)}
           />
         </div>
       </div>

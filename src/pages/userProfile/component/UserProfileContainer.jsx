@@ -1,9 +1,12 @@
+import { useParams } from "react-router-dom";
 import { Sidebar } from "../../../common/sidebar/Sidebar";
 import { PostUserTile } from "../../../common/postUserTile/PostUserTile";
 import { UserSuggestionTile } from "../../../common/userSuggestionTile/UserSuggestionTile";
 import { usePost } from "../../../context/PostContext";
 import { useAuth } from "../../../context/AuthContext";
+import {UserProfileTile} from "./UserProfileTile"
 export const UserProfileContainer = () => {
+  const {username}=useParams();
   const { state } = usePost();
   const { currentUser } = useAuth();
   const filteredUserSuggestionForHome = state?.allUser?.filter(
@@ -16,14 +19,15 @@ export const UserProfileContainer = () => {
         );
       }
     }
-  );
+  ); 
   return (
     <div className="flex">
       <Sidebar />
       <section className="flex-1 grow-[7]">
+        <UserProfileTile/>
         <PostUserTile
-          posts={state.posts?.filter((post) =>
-            state.bookmark.some(({ _id }) => post._id === _id)
+          posts={state.posts?.filter(
+            (post) => post?.username === username
           )}
         />
       </section>
