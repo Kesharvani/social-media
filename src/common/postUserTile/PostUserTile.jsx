@@ -23,12 +23,9 @@ export const PostUserTile = ({ posts }) => {
     return post.likes?.likedBy?.find((item) => item?.username === currentUser?.username);
   };
   
-  const searchFilterPostByUsername = posts.filter((item) =>
-    item.username.toUpperCase().includes(state.searchTerm.toUpperCase())
-  );
   return (
     <>
-      {searchFilterPostByUsername?.map((post) => {
+      {posts?.map((post) => {
         return (
           <div
             className="flex flex-col p-[2rem] m-[0.8rem] shadow-md bg-[#1c1e21] gap-4 rounded"
