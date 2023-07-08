@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 
+import {HiOutlineLogout} from "react-icons/hi"
 import { usePost } from "../../../context/PostContext";
 import { useAuth } from "../../../context/AuthContext";
 import { followServices } from "../../../services";
@@ -7,7 +8,7 @@ import { unfollowServices } from "../../../services";
 export const UserProfileTile = () => {
   const { username } = useParams();
   const { state, dispatch } = usePost();
-  const { currentUser, loginToken } = useAuth();
+  const { currentUser, loginToken,logoutHandler } = useAuth();
 
   // return a user whom profile you clicked upon
   const findUser = state?.allUser?.find((user) => user.username === username);
@@ -37,12 +38,12 @@ export const UserProfileTile = () => {
             <p className="bg-[#1c1e21]">@{findUser?.username}</p>
           </div>
         </div>
-        <div className="flex gap-2 bg-[#1c1e21]">
+        <div className="flex gap-4 bg-[#1c1e21]">
           {currentUser.username === findUser.username && (
-            <button>edit profile</button>
+            <button className="self-center px-[1rem] py-[0.2rem] border rounded bg-[#a82723] hover:bg-[#b92b27]">Edit</button>
           )}
           {currentUser.username === findUser.username && (
-            <button>Logout</button>
+            <HiOutlineLogout size={36} className="self-center bg-[#1c1e21] cursor-pointer" onClick={()=>logoutHandler()}/>
           )}
           {currentUser.username !== findUser.username && findUserFollowing && (
             <button
