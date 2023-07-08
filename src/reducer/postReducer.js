@@ -80,5 +80,17 @@ export const postReducer = (state, action) => {
         ...state,
         posts: action.payload,
       };
+    case ACTION_TYPE.UPDATEPOST:
+      return {
+        ...state,
+        posts: state?.posts?.map((item) => {
+          if (item.id === action.payload?.id) {
+            return action.payload;
+          }
+          return item;
+        }),
+      };
+    default:
+      console.log("Error in Reducer");
   }
 };
