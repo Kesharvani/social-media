@@ -26,7 +26,7 @@ export const CreatPostTile = () => {
     if (isPostTextFieldFocused) {
       inputRef.current.focus();
     }
-  }, [focusTextField]);
+  }, [focusTextField,isPostTextFieldFocused]);
   return (
     <form
       className="flex flex-col p-[2rem] m-[0.8rem] shadow-md bg-[#1c1e21] gap-4 rounded"
