@@ -7,6 +7,7 @@ export const initialValue = {
   bookmark: [],
   searchTerm: "",
   currentUser: {},
+  sideBarButton: "",
 };
 export const postReducer = (state, action) => {
   switch (action.type) {
@@ -101,6 +102,11 @@ export const postReducer = (state, action) => {
           }
           return user;
         }),
+      };
+    case ACTION_TYPE.SIDEBARBUTTONCLICKED:
+      return {
+        ...state,
+        sideBarButton: action.payload,
       };
     default:
       console.log("Error in Reducer");
