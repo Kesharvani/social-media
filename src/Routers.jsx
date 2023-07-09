@@ -6,6 +6,7 @@ import { Register } from "./pages/index.js";
 import { Bookmark } from "./pages/index.js";
 import { LikeDislike } from "./pages/index.js";
 import { Explore } from "./pages/index.js";
+import {UserProfile} from "./pages/index.js"
 import { RequireAuth } from "./common/requireAuth/RequireAuth.jsx";
 export const Routers = () => {
   return (
@@ -41,6 +42,14 @@ export const Routers = () => {
           element={
             <RequireAuth>
               <LikeDislike />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/profile/:username"
+          element={
+            <RequireAuth>
+              <UserProfile />
             </RequireAuth>
           }
         />

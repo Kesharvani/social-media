@@ -1,13 +1,14 @@
 import { BsThreeDots } from "react-icons/bs";
-import Popup from "reactjs-popup";
-import { useState } from "react";
-
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import { useState, useRef } from "react";
+import Modal from "react-modal";
 import { usePost } from "../../context/PostContext";
 import { useAuth } from "../../context/AuthContext";
 import { followServices } from "../../services/index";
 import { deletePostService } from "../../services/post/postServices";
 import { unfollowServices } from "../../services/followUnfollow/followUnfollowServices";
 import { User } from "../user/User";
+import { ACTION_TYPE } from "../../utils";
 
 export const UserDetailSection = ({
   fromPostUserTile,
@@ -17,10 +18,33 @@ export const UserDetailSection = ({
 }) => {
   const { dispatch, state } = usePost();
   const { loginToken, currentUser } = useAuth();
-  const [open, setOpen] = useState(false);
-  const closeModal = () => setOpen(false);
   const [buttonVisible, setButtonVisible] = useState(false);
+  const textareaRef = useRef();
 
+  //Modal state
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  // open modal
+  function openModal() {
+    setIsOpen(true);
+    setButtonVisible((prev) => !prev);
+  }
+
+  // close modal
+  function closeModal() {
+    setIsOpen(false);
+  }
+  // custom style for modal to put in center
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
   // userId of particular post
   const userOfPost = state?.allUser.find(
     (user) => user?.username === post?.username
@@ -36,6 +60,15 @@ export const UserDetailSection = ({
   const unFollowHandlerFromPost = () => {
     unfollowServices(loginToken, dispatch, userOfPost._id);
     setButtonVisible((prev) => !prev);
+  };
+
+  // update click on modal
+  const updateHandler = (post) => {
+    dispatch({
+      type: ACTION_TYPE.UPDATEPOST,
+      payload: { ...post, content: textareaRef?.current?.value },
+    });
+    closeModal();
   };
   return (
     <>
@@ -57,7 +90,7 @@ export const UserDetailSection = ({
               <div className="absolute flex flex-col gap-1 z-10 right-0 top-6 shadow-2xl">
                 <button
                   className="px-[1rem] py-[0.5rem] border rounded"
-                  onClick={() => setOpen((prev) => !prev)}
+                  onClick={() => openModal()}
                 >
                   Edit
                 </button>
@@ -112,11 +145,49 @@ export const UserDetailSection = ({
             Follow
           </button>
         )}
-        <Popup open={open} closeOnDocumentClick onClose={closeModal}>
-          <div className="modal">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Edit Post"
+        >
+          <div className="p-[1rem]">
+            <div className="flex justify-between">
+              <span className="text-[1.3rem]">Edit Post</span>
+              <AiOutlineCloseCircle
+                onClick={closeModal}
+                size={30}
+                className="cursor-pointer"
+              />
+            </div>
+            <div className="flex flex-col mt-[3rem] gap-[2rem] p-[2rem]">
+              <div className="flex gap-[0.5rem] justify-between">
+                <img
+                  src={currentUser?.image}
+                  alt="img"
+                  className="border rounded-lg h-[50px] w-[60px]"
+                />
+                <textarea
+                  name="edit"
+                  id="edittext"
+                  cols="30"
+                  rows="5"
+                  ref={textareaRef}
+                  className="grow bg-[#1c1e21] p-[1rem] rounded-lg"
+                  defaultValue={post?.content}
+                ></textarea>
+              </div>
+              <div className="flex justify-center">
+                <button
+                  className="border border-white rounded-md p-[0.5rem] bg-[#a82723] hover:bg-[#b92b27] cursor-pointer mb-[1rem] w-[50%] text-center"
+                  onClick={() => updateHandler(post)}
+                >
+                  Update
+                </button>
+              </div>
+            </div>
           </div>
-        </Popup>
+        </Modal>
       </div>
     </>
   );

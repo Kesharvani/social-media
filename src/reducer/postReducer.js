@@ -1,5 +1,4 @@
 import { ACTION_TYPE } from "../utils/index";
-
 export const initialValue = {
   posts: [],
   postFollowing: [],
@@ -7,6 +6,7 @@ export const initialValue = {
   allUser: [],
   bookmark: [],
   searchTerm: "",
+  currentUser: {},
 };
 export const postReducer = (state, action) => {
   switch (action.type) {
@@ -16,6 +16,7 @@ export const postReducer = (state, action) => {
         posts: action.payload.posts,
         userFollowing: action.payload?.currentUser?.following,
         allUser: action.payload?.users,
+        currentUser: action?.payload?.currentUser,
       };
     case ACTION_TYPE.ADDED_TO_BOOKMARK:
       return {
@@ -80,5 +81,28 @@ export const postReducer = (state, action) => {
         ...state,
         posts: action.payload,
       };
+    case ACTION_TYPE.UPDATEPOST:
+      return {
+        ...state,
+        posts: state?.posts?.map((item) => {
+          if (item.id === action.payload?.id) {
+            return action.payload;
+          }
+          return item;
+        }),
+      };
+    case ACTION_TYPE.UPDATEUSER:
+      return {
+        ...state,
+        currentUser: { ...action.payload },
+        allUser: state.allUser?.map((user) => {
+          if (user?.username === action.payload?.username) {
+            return action.payload;
+          }
+          return user;
+        }),
+      };
+    default:
+      console.log("Error in Reducer");
   }
 };
