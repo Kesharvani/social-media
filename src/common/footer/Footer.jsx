@@ -9,7 +9,7 @@ export const Footer = () => {
   return (
     <div className="flex flex-col gap-4  items-center">
       <div className="flex justify-center gap-4">
-        <Link to="/">
+        <Link to="/home">
           <img src={Hi5} alt="logo" width="70px" height="50px" />
         </Link>
       </div>
