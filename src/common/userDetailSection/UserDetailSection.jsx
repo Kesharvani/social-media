@@ -164,7 +164,7 @@ export const UserDetailSection = ({
               <div className="flex gap-[0.5rem] justify-between">
                 <img
                   src={currentUser?.image}
-                  alt=""
+                  alt="img"
                   className="border rounded-lg h-[50px] w-[60px]"
                 />
                 <textarea

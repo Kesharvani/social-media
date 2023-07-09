@@ -16,6 +16,8 @@ export const users = [
     updatedAt: formatDate(),
     image:
       "https://i.postimg.cc/Vv3T2gFg/rahadiansyah-CV3n-End-R5-Y-unsplash.jpg",
+    about: "Just Be Yourself!",
+    portfolioUrl: "https://citystore.netlify.app/",
   },
   {
     _id: uuid(),
@@ -26,5 +28,7 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     image: "https://i.postimg.cc/7Y2jSvxW/Yash-Patidar.jpg",
+    about: "Aspiring Web Developer",
+    portfolioUrl: "https://citystore.netlify.app/",
   },
 ];
