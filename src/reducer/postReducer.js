@@ -7,7 +7,7 @@ export const initialValue = {
   bookmark: [],
   searchTerm: "",
   currentUser: {},
-  sideBarButton: "",
+  sideBarButton: "Home",
 };
 export const postReducer = (state, action) => {
   switch (action.type) {
