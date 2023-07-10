@@ -1,10 +1,16 @@
 import { BsImage } from "react-icons/bs";
 import { GrEmoji } from "react-icons/gr";
+import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "../../../context/AuthContext";
 import { usePost } from "../../../context/PostContext";
 import { createPostService } from "../../../services/index";
-import { useEffect, useRef } from "react";
+
+
 export const CreatPostTile = () => {
+
+  const navigate=useNavigate()
   const { loginToken,currentUser } = useAuth();
   const { dispatch, isPostTextFieldFocused, focusTextField } = usePost();
   let postData = { content: "" };
@@ -38,6 +44,7 @@ export const CreatPostTile = () => {
             src={currentUser?.image}
             alt="currentUserImage"
             className="border rounded-lg h-[50px] w-[60px]"
+            onClick={()=>navigate(`/profile/${currentUser?.username}`)}
           />
         </div>
         <textarea

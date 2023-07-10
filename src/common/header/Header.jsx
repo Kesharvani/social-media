@@ -33,6 +33,7 @@ export const Header = () => {
             width="70px"
             height="50px"
             className="border rounded-full"
+            onClick={()=>navigate("/home")}
           />
         </div>
         <div className="relative">
