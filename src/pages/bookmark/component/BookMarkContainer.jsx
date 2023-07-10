@@ -18,15 +18,21 @@ export const BookMarkContainer = () => {
       }
     }
   );
+
+  const bookmarkData=state.posts?.filter((post) =>
+  state.bookmark.some(({ _id }) => post._id === _id)
+)
   return (
     <div className="flex">
       <Sidebar />
       <section className="flex-1 grow-[7]">
+       {
+        bookmarkData.length>0?
         <PostUserTile
-          posts={state.posts?.filter((post) =>
-            state.bookmark.some(({ _id }) => post._id === _id)
-          )}
-        />
+          posts={bookmarkData}
+        />:
+        <h1 className="text-[1.3rem] text-center pt-[1rem]">Bookmark is Empty</h1>
+       } 
       </section>
       <section className="flex-1 flex-wrap grow-[1.8]">
         <UserSuggestionTile
