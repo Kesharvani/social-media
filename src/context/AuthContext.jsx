@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { loginServices } from "../services/index";
 import { signupServices } from "../services/index";
@@ -30,9 +31,13 @@ export const AuthProvider = ({ children }) => {
         setCurrentUser(createdUser);
         setLoginToken(encodedToken);
         navigate("/home");
+        toast.success("Successfully!! Registered and Logged In", {
+          autoClose: 500,
+        });
       }
     } catch (error) {
       console.error(error);
+      toast.error("Something went wrong!!", { autoClose: 500 });
     }
   };
 
@@ -51,15 +56,18 @@ export const AuthProvider = ({ children }) => {
         setCurrentUser(foundUser);
         setIsLoggedIn(true);
         navigate("/home");
+        toast.success("Successfully!! Logged In", { autoClose: 500 });
       }
     } catch (error) {
       console.error(error);
+      toast.error("Something went wrong!!", { autoClose: 500 });
     }
   };
 
   const logoutHandler = () => {
     localStorage.removeItem("loginTokenItem");
     setIsLoggedIn(false);
+    toast.success("Logged Out!!", { autoClose: 500 });
   };
   return (
     <AuthContext.Provider

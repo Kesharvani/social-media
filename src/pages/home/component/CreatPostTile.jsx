@@ -2,6 +2,8 @@ import { BsImage } from "react-icons/bs";
 import { GrEmoji } from "react-icons/gr";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 import { useAuth } from "../../../context/AuthContext";
 import { usePost } from "../../../context/PostContext";
@@ -23,7 +25,7 @@ export const CreatPostTile = () => {
     if (inputRef.current.value === "" || inputRef.current.value === null) {
       inputRef.current.value = "";
     } else {
-      createPostService(loginToken, dispatch, postData);
+      createPostService(loginToken, dispatch, postData,toast);
       inputRef.current.value = "";
     }
   };

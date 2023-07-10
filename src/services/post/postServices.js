@@ -13,7 +13,7 @@ const getPostOfUserFromUserIdService = (username) => {
   return axios.get(`/api/posts/user/${username}`);
 };
 
-const createPostService = async (token, dispatch, postData) => {
+const createPostService = async (token, dispatch, postData, toast) => {
   try {
     const {
       data: { posts },
@@ -29,9 +29,13 @@ const createPostService = async (token, dispatch, postData) => {
     );
     if (status === 200 || status === 201) {
       dispatch({ type: ACTION_TYPE.CREATED_POST, payload: posts });
+      toast.success("Posted Successfully!!", {
+        autoClose: 500,
+      });
     }
   } catch (error) {
     console.error(error);
+    toast.error("Something went wrong!!", { autoClose: 500 });
   }
 };
 

@@ -4,6 +4,7 @@ import { BsBookmark } from "react-icons/bs";
 import { FcBookmark } from "react-icons/fc";
 import { FaRegComments } from "react-icons/fa";
 import { BsShare } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 import { UserDetailSection } from "../userDetailSection/UserDetailSection";
 import {
@@ -17,12 +18,14 @@ import { useAuth } from "../../context/AuthContext";
 
 export const PostUserTile = ({ posts }) => {
   const { state, dispatch } = usePost();
-  const { loginToken,currentUser } = useAuth();
+  const { loginToken, currentUser } = useAuth();
 
   const likedByCurrentUser = (post, currentUser) => {
-    return post.likes?.likedBy?.find((item) => item?.username === currentUser?.username);
+    return post.likes?.likedBy?.find(
+      (item) => item?.username === currentUser?.username
+    );
   };
-  
+
   return (
     <>
       {posts?.map((post) => {
@@ -68,7 +71,12 @@ export const PostUserTile = ({ posts }) => {
                     size={30}
                     className="bg-[#1c1e21]"
                     onClick={() =>
-                      removeFromBookmarkServices(loginToken, dispatch, post)
+                      removeFromBookmarkServices(
+                        loginToken,
+                        dispatch,
+                        post,
+                        toast
+                      )
                     }
                   />
                   <span className="bg-[#1c1e21]">Bookmark</span>
@@ -79,7 +87,7 @@ export const PostUserTile = ({ posts }) => {
                     size={24}
                     className="bg-[#1c1e21]"
                     onClick={() =>
-                      addToBookmarkServices(loginToken, dispatch, post)
+                      addToBookmarkServices(loginToken, dispatch, post, toast)
                     }
                   />
                   <span className="bg-[#1c1e21]">Bookmark</span>
