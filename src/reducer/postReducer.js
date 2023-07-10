@@ -44,8 +44,7 @@ export const postReducer = (state, action) => {
         ...state,
         posts: state.posts.sort(
           (item1, item2) =>
-            new Date(item1.createdAt).getTime() -
-            new Date(item2.createdAt).getTime()
+            new Date(item2.createdAt) - new Date(item1.createdAt)
         ),
       };
     case ACTION_TYPE.TRENDING:
